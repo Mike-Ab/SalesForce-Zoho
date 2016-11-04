@@ -1,0 +1,15 @@
+{
+    "name": "catch/zoho-mapper",
+    "description": "A simple zoho API wrapping class customised for CatchSolutions clients",
+    "require": {
+        "php": ">=5.5.0",
+        "guzzlehttp/guzzle": "~6.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mike-AB",
+            "email": "glool1212@hotmail.com"
+        }
+    ]
+}
