@@ -1,12 +1,9 @@
 <?php
-
 namespace ZohoMapper;
 
-/**
- * Description of ZohoMapper
- *
- * @author mohammada
- */
+require __DIR__ .'/vendor/autoload.php';
+require __DIR__ . '/catch-zoho-mapper-autoload.php';
+
 use \GuzzleHttp\Client;
 use \ZohoMapper\ZohoServiceProvider as Zoho;
 
@@ -23,7 +20,7 @@ class ZohoMapper
     
     public function insertRecord ($record, $type, $isApproval = false)
     {
-        $http = new Client();
+        $http = new Client(['verify' => false]);
         $url = Zoho::generateURL('insert', $type);
         $options = [
             'scope'     => 'crmapi',
@@ -35,11 +32,10 @@ class ZohoMapper
         if ($isApproval) {
             $options['isApproval'] = 'true';
         }
-        $attempt = $http->post($url, [
+        $attempt = $http->request('POST', $url, [
             'form_params' => $options
             ]);
-            var_dump($attempt->getBody(), $attempt->getHeaders(), $attempt);
-            
+        echo ($attempt->getBody());
     }
     
 }
@@ -50,10 +46,10 @@ $lead = [
     'Email'         => 'it'.time().'@testOnlytest.com.au',
     'First Name'    => 'Guzzlle',
     'Last Name'     => 'testttttt',
-    'Mobile'        => '044040404040',
+    'Mobile'        => '04404040404',
     'Description'   => 'This is a junk lead'
 ];
-$zoho->insertRecord($record, $type);
+$zoho->insertRecord($lead, 'Leads');
 
 /*
  * $parameter = $utilObj->setParameter("scope", $this->SCOPE, $parameter);

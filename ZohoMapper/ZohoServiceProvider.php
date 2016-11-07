@@ -2,6 +2,7 @@
 
 namespace ZohoMapper;
 
+require __DIR__.'/vendor/autoload.php';
 /**
  * Description of ZohoServiceProvider
  *
@@ -48,7 +49,7 @@ class ZohoServiceProvider
         $xml = '';
         $index = 0;
         $xml .= "<$recordType>";
-        $xml .= "<row no='++$index'>";
+        $xml .= "<row no='".++$index."'>";
         foreach ($data as $key => $val){
             $xml .= "<FL val='$key'><![CDATA[$val]]></FL>";
         }
